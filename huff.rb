@@ -19,27 +19,31 @@ class Node
     @@str
   end
 
-  def self.visualize(node, newline, pos = :center)
-    # newline ? @@str += " #{node.value}\n" : @@str += "#{node.value}  "
-    # @@str += buffer
-    # self.visualize(node.left, false) if node.left
-    # self.visualize(node.right, true, " ") if node.right
-    @@buffer = " "
+  def self.all
+    @@all
+  end
+
+  def self.visualize(node, newline, buffer="")
     newline ? @@str += " #{node.value}\n" : @@str += "#{node.value}  "
-    if pos == :center
-      self.visualize(node.left, false, :left) if node.left
-      self.visualize(node.right, true, :right) if node.right
-    elsif pos == :right
-      @@str.ljust(1, @@buffer)
-      self.visualize(node.left, false, :left) if node.left
-      self.visualize(node.right, true, :right) if node.right
-      @@buffer += " "
-    elsif pos == :left
-      @@str.rjust(1, @@buffer)
-      self.visualize(node.left, false, :left) if node.left
-      self.visualize(node.right, true, :right) if node.right
-      @@buffer += " "
-    end
+    @@str += buffer
+    self.visualize(node.left, false) if node.left
+    self.visualize(node.right, true, " ") if node.right
+    # @@buffer = " "
+    # newline ? @@str += " #{node.value}\n" : @@str += "#{node.value}  "
+    # if pos == :center
+    #   self.visualize(node.left, false, :left) if node.left
+    #   self.visualize(node.right, true, :right) if node.right
+    # elsif pos == :right
+    #   @@buffer += "  "
+    #   @@str.ljust(1, @@buffer)
+    #   self.visualize(node.left, false, :left) if node.left
+    #   self.visualize(node.right, true, :right) if node.right
+    # elsif pos == :left
+    #   @@buffer += "  "
+    #   @@str.rjust(1, @@buffer)
+    #   self.visualize(node.left, false, :left) if node.left
+    #   self.visualize(node.right, true, :right) if node.right
+    # end
   end
 
   def initialize(value, left = nil, right = nil)
@@ -72,6 +76,7 @@ class Node
   end
 end
 
-Node.huffman "aaaacb"
+Node.huffman "aaaabbcddd"
 Node.visualize(Node.root, true)
 puts Node.str
+puts Node.all.map {|n| n.value}

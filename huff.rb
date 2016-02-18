@@ -1,7 +1,9 @@
 class Node
   attr_accessor :left, :right, :value
+
   include Enumerable
   @@all = []
+  @@str = ""
 
   def each(&block)
     left.each(&block) if left
@@ -9,21 +11,35 @@ class Node
     right.each(&block) if right
   end
 
-  def self.visualize
-    # @root.map do |n|
-    #   " #{n.value}\n #{"/" if n.left}#{"\\" if n.right}\n#{n.left.value if n.left}  #{n.right.value if n.right}"
-    # end
-    # @root.map do |n|
-    #   puts "#{@root.value}"
-    #   if n.left && n.right
-    #     puts "/\\\n#{n.left.value}  #{n.right.value}"
-    #   elsif n.left
-    #     puts "/\n#{n.left.value}"
-    #   elsif n.right
-    #     puts "\\\n#{n.right.value }"
-    #   end
-    # end
-    @root.each_with_index { |n, i| puts "#{n.value}: #{i}"}
+  def self.root
+    @@root
+  end
+
+  def self.str
+    @@str
+  end
+
+  def self.visualize(node, newline, pos = :center)
+    # newline ? @@str += " #{node.value}\n" : @@str += "#{node.value}  "
+    # @@str += buffer
+    # self.visualize(node.left, false) if node.left
+    # self.visualize(node.right, true, " ") if node.right
+    @@buffer = " "
+    newline ? @@str += " #{node.value}\n" : @@str += "#{node.value}  "
+    if pos == :center
+      self.visualize(node.left, false, :left) if node.left
+      self.visualize(node.right, true, :right) if node.right
+    elsif pos == :right
+      @@str.ljust(1, @@buffer)
+      self.visualize(node.left, false, :left) if node.left
+      self.visualize(node.right, true, :right) if node.right
+      @@buffer += " "
+    elsif pos == :left
+      @@str.rjust(1, @@buffer)
+      self.visualize(node.left, false, :left) if node.left
+      self.visualize(node.right, true, :right) if node.right
+      @@buffer += " "
+    end
   end
 
   def initialize(value, left = nil, right = nil)
@@ -52,9 +68,10 @@ class Node
 
     root_right = @@all.max_by { |n| n.value.length.to_s }
     root_left = Node.new(chars.pop)
-    @root = Node.new(root_value, root_left, root_right)
+    @@root = Node.new(root_value, root_left, root_right)
   end
 end
 
-Node.huffman "aaaabc"
-p Node.visualize
+Node.huffman "aaaacb"
+Node.visualize(Node.root, true)
+puts Node.str

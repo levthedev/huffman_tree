@@ -12,7 +12,7 @@ class Node
   end
 
   def self.all
-    @@all
+    @@all.select { |n| n.value != nil }
   end
 
   def initialize(value, left = nil, right = nil)
@@ -24,14 +24,20 @@ class Node
     dict = Hash.new(0)
     string.split("").inject(dict)  {|_, c| dict[c] += 1 }
     sorted_chars = dict.sort_by { |_, v| v }.map { |c, _| c }.reverse
-    self.populate_tree sorted_chars
+    self.populate_tree sorted_chars, dict
   end
 
-  def self.populate_tree(chars)
+  def self.populate_tree(chars, dict)
     root_value = chars.join("")
+
+    left = Node.new chars.pop
+    right = Node.new chars.pop
+    Node.new(left.value + right.value, left, right)
+    # chars << left.value + right.value
+
     until @@all.max_by { |n| n.value.length.to_s == (chars.length - 1) }
-      left = Node.new chars.pop
-      right = Node.new chars.pop
+      new_left = Node.new chars.pop
+      new_right =
       Node.new(left.value + right.value, left, right)
     end
 
@@ -75,18 +81,24 @@ class TestHuffman < Minitest::Test
     assert_equal cb_node, parent
   end
 
+  def test_it_makes_nodes_for_each_symbol
+    puts Node.all.map { |n| n.value }
+    assert_equal 7, Node.all.count
+  end
+
   def test_it_returns_a_huffman_code
+    skip
     a_code = { a: 0 }
     b_code = { b: 111 }
     c_code = { c: 110 }
     d_code = { d: 10 }
 
-    # a_node = Node.find("a")
+    a_node = Node.find("a")
     b_node = Node.find("b")
     c_node = Node.find("c")
     d_node = Node.find("d")
 
-    # assert_equal a_code, a_node.huffman_code
+    assert_equal a_code, a_node.huffman_code
     assert_equal b_code, b_node.huffman_code
     assert_equal c_code, c_node.huffman_code
     assert_equal d_code, d_node.huffman_code

@@ -1,21 +1,21 @@
 require 'byebug'
 
 class Node
-  attr_accessor :value, :weight, :left, :right  # => nil
+  attr_accessor :value, :weight, :left, :right
 
   def initialize(value, weight, left, right)
-    @value, @weight, @left, @right = value, weight, left, right  # => ["D", 1, nil, nil], ["F", 1, nil, nil], ["G", 1, nil, nil], ["C", 2, nil, nil], ["DF", 2, nil, nil], ["B", 3, nil, nil], ["GC", 3, nil, nil], ["A", 4, nil, nil], ["DFB", 5, nil, nil], ["GCA", 7, nil, nil], ["DFBGCA", 12, #<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>, #<Node:0x007feb63071e98 @value="GCA", @weight=7, @left=nil, @right=nil>]
-    Tree.nodes << self                                           # => [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb6307a9f8 @value="A", @weight=4, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb6307a9f8 @value="A", @weight=4, @left=nil, @right=nil>, #<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb6307a9f8 @value="A", @weight=4, @left=nil, @right=nil>, #<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>, #<Node:0x007feb63071e98 @value="GCA", @weight=7, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb6307a9f8 @value="A", @weight=4, @left=nil, @right=nil>, #<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>, #<Node:0x007feb63071e98 @value="GCA", @weight=7, @left=nil, @right=nil>, #<Node:0x007feb6306ac38 @value="DFBGCA", @weight=12, @left=#<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>, @right=#<Node:0x007feb63071e98 @value="GCA", @weight=7, @left=nil, @right=nil>>]
+    @value, @weight, @left, @right = value, weight, left, right
+    Tree.nodes << self
   end
 end
 
 class Tree
   def self.nodes
-    @@nodes ||= []  # => [], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb6307a9f8 @value="A", @weight=4, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb6307a9f8 @value="A", @weight=4, @left=nil, @right=nil>, #<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb6307a9f8 @value="A", @weight=4, @left=nil, @right=nil>, #<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>, #<Node:0x007feb63071e98 @value="GCA", @weight=7, @left=nil, @right=nil>], [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb6307a9f8 @value="A", @weight=4, @left=nil, @right=nil>, #<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>, #<Node:0x007feb63071e98 @value="GCA", @weight=7, @left=nil, @right=nil>, #<Node:0x007feb6306ac38 @value="DFBGCA", @weight=12, @left=#<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>, @right=#<Node:0x007feb63071e98 @value="GCA", @weight=7, @left=nil, @right=nil>>]
+    @@nodes ||= []
   end
 
   def self.dict
-    @@dict       # => {"DFBGCA"=>12}
+    @@dict
   end
 
   def self.search(value)
@@ -23,7 +23,7 @@ class Tree
   end
 
   def self.insert(value, weight, left = nil, right = nil)
-    Node.new(value, weight, left, right)                   # => #<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb6307a9f8 @value="A", @weight=4, @left=nil, @right=nil>, #<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>, #<Node:0x007feb63071e98 @value="GCA", @weight=7, @left=nil, @right=nil>
+    Node.new(value, weight, left, right)
   end
 
   def self.parent(child)
@@ -31,41 +31,30 @@ class Tree
   end
 
   def self.huffman_codes(string)
-    @@dict = Hash.new(0)                                       # => {}
-    string.split("").inject(@@dict)  {|_, c| @@dict[c] += 1 }  # => 1
-    populate                                                   # => nil
+    @@dict = Hash.new(0)
+    string.split("").inject(@@dict)  {|_, c| @@dict[c] += 1 }
+    populate
   end
 
   def self.populate
-    until @@dict.keys.length < 2                                                  # => false, false, false, false, false, true
-      smallest_weights = @@dict.min_by(2) { |_, weight| weight }                  # => [["D", 1], ["F", 1]], [["G", 1], ["C", 2]], [["DF", 2], ["B", 3]], [["GC", 3], ["A", 4]], [["DFB", 5], ["GCA", 7]]
-      new_nodes = smallest_weights.map { |value, weight| insert(value, weight) }  # => [#<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>], [#<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>], [#<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>], [#<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb6307a9f8 @value="A", @weight=4, @left=nil, @right=nil>], [#<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>, #<Node:0x007feb63071e98 @value="GCA", @weight=7, @left=nil, @right=nil>]
-      combined_weight = new_nodes.map(&:weight).reduce(:+)                        # => 2, 3, 5, 7, 12
-      @@left = new_nodes[0]                                                       # => #<Node:0x007feb64028e68 @value="D", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb630900f0 @value="G", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb63083d78 @value="DF", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb630804c0 @value="GC", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>
-      @@right = new_nodes[-1]                                                     # => #<Node:0x007feb640284b8 @value="F", @weight=1, @left=nil, @right=nil>, #<Node:0x007feb6308aab0 @value="C", @weight=2, @left=nil, @right=nil>, #<Node:0x007feb63082c98 @value="B", @weight=3, @left=nil, @right=nil>, #<Node:0x007feb6307a9f8 @value="A", @weight=4, @left=nil, @right=nil>, #<Node:0x007feb63071e98 @value="GCA", @weight=7, @left=nil, @right=nil>
-      combined_value = @@left.value.to_s + @@right.value.to_s                     # => "DF", "GC", "DFB", "GCA", "DFBGCA"
-      @@dict.delete(@@left.value)                                                 # => 1, 1, 2, 3, 5
-      @@dict.delete(@@right.value)                                                # => 1, 2, 3, 4, 7
-      @@dict[combined_value] = combined_weight                                    # => 2, 3, 5, 7, 12
-    end                                                                           # => nil
-    Node.new(@@dict.keys.first, @@dict.values.first, @@left, @@right)             # => #<Node:0x007feb6306ac38 @value="DFBGCA", @weight=12, @left=#<Node:0x007feb63073ec8 @value="DFB", @weight=5, @left=nil, @right=nil>, @right=#<Node:0x007feb63071e98 @value="GCA", @weight=7, @left=nil, @right=nil>>
+    until @@dict.keys.length < 2
+      smallest_weights = @@dict.min_by(2) { |_, weight| weight }
+      new_nodes = smallest_weights.map { |value, weight| insert(value, weight) }
+      combined_weight = new_nodes.map(&:weight).reduce(:+)
+      @@left = new_nodes[0]
+      @@right = new_nodes[-1]
+      combined_value = @@left.value.to_s + @@right.value.to_s
+      @@dict.delete(@@left.value)
+      @@dict.delete(@@right.value)
+      @@dict[combined_value] = combined_weight
+
+    end
+    Node.new(@@dict.keys.first, @@dict.values.first, @@left, @@right)
     @@dict.delete(@@dict[@@dict.keys.first])
-    byebug                                                   # => nil
   end
 end
 
-Tree.huffman_codes "AAAABBBCCDGF"  # => nil
-puts Tree.nodes.map {|n| n.value}  # => nil
+Tree.huffman_codes "AAAABBBCCDGF"
+puts Tree.nodes.map { |node| node.value }
 
-# >> D
-# >> F
-# >> G
-# >> C
-# >> DF
-# >> B
-# >> GC
-# >> A
-# >> DFB
-# >> GCA
-# >> DFBGCA
-# >> {"DFBGCA"=>12}
+#(treat nodes like ordered set. take two, search for combined values. make result parent, with left first node of combined values and right second node)
